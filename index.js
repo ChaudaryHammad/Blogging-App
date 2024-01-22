@@ -1,12 +1,16 @@
 const express = require('express');
 const app = express();
-require('dotenv').config();
+const path = require('path');
 
+const dotenv = require('dotenv');
+const envPath = path.join(__dirname, 'config', '.env');
+
+dotenv.config({ path: envPath });
 
 //custome imports
 
-const connectDB = require('./database/connection');
-
+const {connectDB} = require('./Database/connection');
+connectDB();
 
 //middlewares
 app.use(express.json());
