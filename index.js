@@ -3,6 +3,18 @@ const app = express();
 require('dotenv').config();
 
 
+//custome imports
+
+const connectDB = require('./database/connection');
+
+
+//middlewares
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+
+
+//routes
 
 
 
