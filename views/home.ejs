@@ -1,51 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Home Page</title>
-    <style>
-      .t {
+<head>
+<title>Home Page</title>
+<style>
+    .t{
         text-align: center;
-      }
+    
+    }
 
-      .cont {
+    .cont{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
         gap: 25px;
-      }
-      .im {
+     
+
+    }
+    .im{
         height: 200px;
-        object-fit: cover;
-      }
-    </style>
-    <%- include("./partials/head.ejs") %>
-  </head>
-  <body>
-    <%- include("./partials/nav.ejs") %>
-    <h1 class="t mt-2 mb-5">All Blogs</h1>
+       object-fit: cover;
+    }
 
-    <div class="container mt-3">
-      <% function truncateTitle(title, words) { const titleArray = title.split('
-      '); const truncatedTitle = titleArray.slice(0, words).join(' '); return
-      truncatedTitle + (titleArray.length > words ? '...' : ''); } %>
-      <div class="cont">
-        <% blogs.forEach(blog => { %>
-        <div class="card" style="width: 18rem">
-          <img
-            src="<%= blog.coverImageURL%>"
-            class="im card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 class="card-title tit"><%= truncateTitle(blog.title, 5) %></h5>
 
-            <a href="/blog/<%= blog._id%>" class="btn btn-primary">Read</a>
+</style>
+   <%- include("./partials/head.ejs") %>
+</head>
+<body>
+<%- include("./partials/nav.ejs") %>
+<h1 class="t mt-2 mb-5">All Blogs</h1>
+
+<div class="container mt-3">
+
+  <% function truncateTitle(title, words) {
+    const titleArray = title.split(' ');
+    const truncatedTitle = titleArray.slice(0, words).join(' ');
+    return truncatedTitle + (titleArray.length > words ? '...' : '');
+} %>
+  <div class="cont" >
+    <% blogs.forEach(blog => { %>
+        <div class="card" style="width: 18rem;">
+            <img src="<%= blog.coverImageURL%>" class="im card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title tit"><%= truncateTitle(blog.title, 5) %></h5>
+
+              
+              <a href="/blog/<%= blog._id%>" class="btn btn-primary">Read</a>
+            </div>
           </div>
-        </div>
-        <% }) %>
-      </div>
-    </div>
+    <% }) %>
+
+  </div>
+</div>
+
 
     <%- include('./partials/scripts.ejs') %>
-  </body>
+</body>
 </html>
