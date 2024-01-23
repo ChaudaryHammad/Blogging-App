@@ -38,12 +38,26 @@ router.post('/signin',async(req,res)=>{
     if(!email || !password){
         return res.status(400).json({error:"Please fill all the fields"})
     }
+    try {
+        const token = await User.matchPasswordAndGenerateToken(email,password)
+    console.log("User: ",token);
 
-    const user = User.matchPassword(email,password)
-    console.log("User: ",user);
+    
+    res.cookie('token',token,{httpOnly:true}).redirect('/');
+        
+    } catch (error) {
+        return res.render('signin',{error:error.message})
+    }
 
-    return res.redirect('/');
+    
+
 })
+
+
+router.get('/logout',(req,res)=>{
+    res.clearCookie('token').redirect('/');
+})
+
 
 
 
