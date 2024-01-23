@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 //custome imports
 
 const userRoutes = require('./routes/user');
+const blogRoutes = require('./routes/blog');
 
 
 
@@ -35,7 +36,7 @@ app.use(checkForAuthenticationCookie('token'));
 
 //routes
 app.use('/user',userRoutes);
-
+app.use('/blog',blogRoutes);
 
 //PORT DEFINTION
 const PORT = process.env.PORT || 3000;
